@@ -2,6 +2,8 @@ package com.bblc.client;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.bblc.category.Category;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -21,7 +24,7 @@ public class Client extends PanacheEntity{
     @NotBlank(message = "Nome não pode estar em branco")
     @NotNull
     @Column(nullable = false)
-    private String name;
+    private String completeName;
     
     @NotNull(message = "Idade não pode estar em branco")
     @Min(value = 18, message = "Cadastro de menor de 18 anos não permitido")
@@ -40,15 +43,26 @@ public class Client extends PanacheEntity{
     @Column(nullable = false)
     private String email;
 
-    // @ManyToOne(fetch = FetchType.EAGER)
-    // private Category category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Category category;
+
+    public Client() {
+    }
+
+    public Client(
+        String completeName, Integer age, String vatNumber, String email) {
+        this.completeName = completeName;
+        this.age = age;
+        this.vatNumber = vatNumber;
+        this.email = email;
+    }
 
     public long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getCompleteName() {
+        return completeName;
     }
 
     public Integer getAge() {
@@ -68,11 +82,11 @@ public class Client extends PanacheEntity{
         return this;
     }
 
-    public Client setName(String name) {
-        this.name = name;
+    public Client setCompleteName(String completeName) {
+        this.completeName = completeName;
         return this;
     }
-
+    
     public Client setAge(Integer age) {
         this.age = age;
         return this;

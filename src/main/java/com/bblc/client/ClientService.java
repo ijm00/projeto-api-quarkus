@@ -28,7 +28,7 @@ public class ClientService {
     @Transactional
     public Client update(Long id, Client client) {
         Client dataClient = Client.findById(id);
-            dataClient.setName(client.getName())
+            dataClient.setCompleteName(client.getCompleteName())
                 .setAge(client.getAge())
                 .setEmail(client.getEmail())
                 .setVatNumber(client.getVatNumber());
