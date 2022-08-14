@@ -18,15 +18,15 @@ public class Category{
     @NotBlank(message = "Nome não pode estar em branco")
     @NotNull
     @Column(nullable = false)
-    private String name;
+    private String categoryName;
 
+    @NotBlank(message = "Código não pode estar em branco")
+    @NotNull
+    @Column(nullable = false)
+    private String code;
 
     public long getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public Category setId(long id) {
@@ -34,9 +34,24 @@ public class Category{
         return this;
     }
 
-    public Category setName(String name) {
-        this.name = name;
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public Category setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
         return this;
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public Category setCode(String code) {
+        this.code = code;
+        return this;
+    }
+
+    
 
     }

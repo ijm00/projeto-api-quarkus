@@ -1,5 +1,6 @@
 package com.bblc.category;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.DELETE;
@@ -19,6 +20,11 @@ public class CategoryResource {
 
     @Inject
     CategoryService categoryService;
+
+    @PostConstruct
+    public void initTableCategory() {
+        categoryService.init();
+    }
 
     @POST
     public Response categoryCreate(@Valid Category category) {

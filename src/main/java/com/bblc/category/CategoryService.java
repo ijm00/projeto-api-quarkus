@@ -14,6 +14,20 @@ public class CategoryService {
     @Inject
     CategoryRepository categoryRepository;
 
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public void init() {
+        Category categoryDev = new Category()
+            .setCategoryName("Developer")
+            .setCode("dev");
+        categoryRepository.persist(categoryDev);
+
+        Category categorySell = new Category()
+            .setCategoryName("Merchant")
+            .setCode("com");
+        categoryRepository.persist(categorySell);
+    }
+
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -31,7 +45,7 @@ public class CategoryService {
     @Transactional
     public Category update(Long id, Category category) {
         Category dataCategory = categoryRepository.findById(id);
-            dataCategory.setName(category.getName());
+            dataCategory.setCategoryName(category.getCategoryName());
 
             categoryRepository.persist(dataCategory);
         return dataCategory;
