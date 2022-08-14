@@ -12,9 +12,6 @@ import javax.ws.rs.PathParam;
 
 import javax.ws.rs.core.Response;
 
-
-
-
 @Path("/category")
 public class CategoryResource {
 

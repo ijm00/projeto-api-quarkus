@@ -105,8 +105,5 @@ public class Client {
         this.email = email;
         return this;
     }
-    
-    
-
-
+       
 }

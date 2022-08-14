@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 public class Category{
     @Id
@@ -52,6 +51,4 @@ public class Category{
         return this;
     }
 
-    
-
-    }
+}
