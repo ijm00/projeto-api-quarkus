@@ -1,21 +1,11 @@
 package com.bblc.client;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class ClientDTO {
-    
     private final String name;
-    private final String email;
-
-    public ClientDTO(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-                               
+    private final String email;                          
 }

@@ -1,16 +1,11 @@
 package com.bblc.category;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class CategoryDTO {
-    
     private final String name;
-
-
-    public CategoryDTO(String name, String email) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-              
+    private final String code;
 }
