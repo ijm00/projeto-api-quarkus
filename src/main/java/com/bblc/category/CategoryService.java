@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 @RequestScoped
 public class CategoryService {
+    
     @Inject
     CategoryRepository categoryRepository;
 

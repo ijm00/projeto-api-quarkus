@@ -16,6 +16,13 @@ import javax.validation.constraints.Size;
 
 import com.bblc.category.Category;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter 
+@Setter
+@Accessors(chain = true)
 @Entity
 public class Client {
 
@@ -59,51 +66,6 @@ public class Client {
         this.age = age;
         this.vatNumber = vatNumber;
         this.email = email;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getCompleteName() {
-        return completeName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public String getVatNumber() {
-        return vatNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Client setId(long id) {
-        this.id = id;
-        return this;
-    }
-
-    public Client setCompleteName(String completeName) {
-        this.completeName = completeName;
-        return this;
-    }
-    
-    public Client setAge(Integer age) {
-        this.age = age;
-        return this;
-    }
-
-    public Client setVatNumber(String vatNumber) {
-        this.vatNumber = vatNumber;
-        return this;
-    }
-
-    public Client setEmail(String email) {
-        this.email = email;
-        return this;
     }
        
 }

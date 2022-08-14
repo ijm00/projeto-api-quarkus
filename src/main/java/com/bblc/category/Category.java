@@ -8,8 +8,16 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@Accessors(chain = true)
 @Entity
 public class Category{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -23,32 +31,5 @@ public class Category{
     @NotNull
     @Column(nullable = false)
     private String code;
-
-    public long getId() {
-        return id;
-    }
-
-    public Category setId(long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public Category setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-        return this;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public Category setCode(String code) {
-        this.code = code;
-        return this;
-    }
 
 }
