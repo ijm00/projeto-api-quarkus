@@ -2,15 +2,18 @@ package com.bblc.category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-
 @Entity
-public class Category extends PanacheEntity{
+public class Category{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @NotBlank(message = "Nome não pode estar em branco")
     @NotNull

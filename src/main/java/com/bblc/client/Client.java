@@ -3,6 +3,9 @@ package com.bblc.client;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -13,11 +16,12 @@ import javax.validation.constraints.Size;
 
 import com.bblc.category.Category;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-
 @Entity
-public class Client extends PanacheEntity{
+public class Client {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Size(min = 5, message = "Nome muito curto")
     @Size(max = 100, message = "Nome muito longo")
