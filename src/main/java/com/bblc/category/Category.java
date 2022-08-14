@@ -31,5 +31,5 @@ public class Category{
     @NotNull
     @Column(nullable = false)
     private String code;
-
+    
 }
