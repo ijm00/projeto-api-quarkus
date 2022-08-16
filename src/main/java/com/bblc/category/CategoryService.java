@@ -1,6 +1,7 @@
 package com.bblc.category;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,28 +16,34 @@ public class CategoryService {
     @Inject
     CategoryRepository categoryRepository;
 
+    @Inject
+    CategoryMapper categoryMapper;
+
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public void init() {
         Category categoryDev = new Category()
-            .setCategoryName("Developer");
+            .setName("Developer");
         categoryRepository.persist(categoryDev);
 
         Category categorySell = new Category()
-            .setCategoryName("Merchant");
+            .setName("Merchant");
         categoryRepository.persist(categorySell);
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Category create(Category category) {
+    public CategoryDTO create(Category category) {
         categoryRepository.persist(category);
-        return category;
+        return categoryMapper.toDomain(category);
     }
 
-    public List<Category> list() {
-        return categoryRepository.listAll();
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<CategoryDTO> list() {
+        return categoryRepository.streamAll()
+            .map(cat -> categoryMapper.toDomain(cat))
+            .collect(Collectors.toList());
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
@@ -44,7 +51,7 @@ public class CategoryService {
     @Transactional
     public Category update(Long id, Category category) {
         Category dataCategory = categoryRepository.findById(id);
-            dataCategory.setCategoryName(category.getCategoryName());
+            dataCategory.setName(category.getName());
 
             categoryRepository.persist(dataCategory);
         return dataCategory;

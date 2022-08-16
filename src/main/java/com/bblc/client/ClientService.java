@@ -1,6 +1,7 @@
 package com.bblc.client;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -9,6 +10,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.bblc.category.CategoryRepository;
+
 @RequestScoped
 public class ClientService {
     @Inject
@@ -16,17 +19,26 @@ public class ClientService {
 
     @Inject
     private ClientMapper clientMapper;
+
+    @Inject
+    private CategoryRepository categoryRepository;
               
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public ClientDTO create(Client client) {
+        if (!categoryRepository.existsCategory(client.getCategory().getName())) {
+            categoryRepository.persist(client.getCategory());
+        }
         clientRepository.persist(client);
         return clientMapper.toDomain(client);
     }
 
-    public List<Client> list() {
-        return clientRepository.listAll();
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ClientDTO> list() {
+        return clientRepository.streamAll()
+            .map(c -> clientMapper.toDomain(c))
+            .collect(Collectors.toList());
     }
 
     @Consumes(MediaType.APPLICATION_JSON)

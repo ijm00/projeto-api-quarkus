@@ -1,11 +1,10 @@
 package com.bblc.category;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class CategoryDTO {
-    private final String name;
-    private final String code;
+    private String name;
 }
