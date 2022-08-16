@@ -26,10 +26,5 @@ public class Category{
     @NotNull
     @Column(nullable = false)
     private String categoryName;
-
-    @NotBlank(message = "Código não pode estar em branco")
-    @NotNull
-    @Column(nullable = false)
-    private String code;
     
 }

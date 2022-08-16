@@ -35,7 +35,7 @@ public class Client {
     @NotBlank(message = "Nome não pode estar em branco")
     @NotNull
     @Column(nullable = false)
-    private String completeName;
+    private String name;
     
     @NotNull(message = "Idade não pode estar em branco")
     @Min(value = 18, message = "Cadastro de menor de 18 anos não permitido")
@@ -56,16 +56,5 @@ public class Client {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
-
-    public Client() {
-    }
-
-    public Client(
-        String completeName, Integer age, String vatNumber, String email) {
-        this.completeName = completeName;
-        this.age = age;
-        this.vatNumber = vatNumber;
-        this.email = email;
-    }
        
 }

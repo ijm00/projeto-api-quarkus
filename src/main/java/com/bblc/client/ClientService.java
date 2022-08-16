@@ -13,13 +13,16 @@ import javax.ws.rs.core.MediaType;
 public class ClientService {
     @Inject
     ClientRepository clientRepository;
+
+    @Inject
+    private ClientMapper clientMapper;
               
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Client create(Client client) {
+    public ClientDTO create(Client client) {
         clientRepository.persist(client);
-        return client;
+        return clientMapper.toDomain(client);
     }
 
     public List<Client> list() {
@@ -31,7 +34,7 @@ public class ClientService {
     @Transactional
     public Client update(Long id, Client client) {
         Client dataClient = clientRepository.findById(id);
-            dataClient.setCompleteName(client.getCompleteName())
+            dataClient.setName(client.getName())
                 .setAge(client.getAge())
                 .setEmail(client.getEmail())
                 .setVatNumber(client.getVatNumber());

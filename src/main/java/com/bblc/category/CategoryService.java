@@ -19,13 +19,11 @@ public class CategoryService {
     @Transactional
     public void init() {
         Category categoryDev = new Category()
-            .setCategoryName("Developer")
-            .setCode("dev");
+            .setCategoryName("Developer");
         categoryRepository.persist(categoryDev);
 
         Category categorySell = new Category()
-            .setCategoryName("Merchant")
-            .setCode("com");
+            .setCategoryName("Merchant");
         categoryRepository.persist(categorySell);
     }
 
