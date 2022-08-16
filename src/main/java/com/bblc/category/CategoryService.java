@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 @RequestScoped
 public class CategoryService {
-    
+
     @Inject
     CategoryRepository categoryRepository;
 
@@ -23,11 +23,11 @@ public class CategoryService {
     @Transactional
     public void init() {
         CategoryDTO categoryDev = new CategoryDTO()
-            .setName("Developer");
+                .setName("Developer");
         categoryRepository.persist(categoryMapper.toEntity(categoryDev));
 
         CategoryDTO categorySell = new CategoryDTO()
-            .setName("Merchant");
+                .setName("Merchant");
         categoryRepository.persist(categoryMapper.toEntity(categorySell));
     }
 
@@ -42,8 +42,8 @@ public class CategoryService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<CategoryDTO> list() {
         return categoryRepository.streamAll()
-            .map(cat -> categoryMapper.toDomain(cat))
-            .collect(Collectors.toList());
+                .map(cat -> categoryMapper.toDomain(cat))
+                .collect(Collectors.toList());
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
@@ -51,8 +51,8 @@ public class CategoryService {
     @Transactional
     public Category update(Long id, Category category) {
         Category dataCategory = categoryRepository.findById(id);
-            dataCategory.setName(category.getName());
-            categoryRepository.persist(dataCategory);
+        dataCategory.setName(category.getName());
+        categoryRepository.persist(dataCategory);
         return dataCategory;
     }
 
@@ -62,5 +62,5 @@ public class CategoryService {
         categoryRepository.deleteById(id);
         return "category " + id + " deleted";
     }
+    
 }
-

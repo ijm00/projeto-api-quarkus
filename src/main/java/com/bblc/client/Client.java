@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@Getter 
+@Getter
 @Setter
 @Accessors(chain = true)
 @Entity
@@ -35,18 +35,18 @@ public class Client {
     @NotNull
     @Column(nullable = false)
     private String name;
-    
+
     @NotNull(message = "Idade não pode estar em branco")
     @Min(value = 18, message = "Cadastro de menor de 18 anos não permitido")
     @Column(nullable = false)
-    private Integer age ;
-    
+    private Integer age;
+
     @NotBlank
     @NotNull
     @Column(nullable = false)
     @Pattern(regexp = "^[A-Z]{2}[\\d]{9}$", message = "Não é um VAT Number válido. Deve seguir o padrão XX999999999.")
     private String vatNumber;
-    
+
     @NotBlank(message = "E-mail não pode estar em branco")
     @NotNull
     @Email(message = "Formato de e-mail inválido")
@@ -55,5 +55,5 @@ public class Client {
 
     @ManyToOne
     private Category category;
-       
+
 }

@@ -20,19 +20,16 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @Entity
-public class Category{
-    
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    
     @Column(nullable = false)
     private String name;
 
-    @OneToMany (mappedBy = "category",
-                cascade = CascadeType.ALL,
-                orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Client> clients;
-    
+
 }

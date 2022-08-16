@@ -28,9 +28,9 @@ public class ClientResource {
     @Path("/list")
     public Response listClients() {
         return Response.status(Response.Status.OK).entity(clientService.list()).build();
-        }
+    }
 
-    @PUT 
+    @PUT
     @Path("/{id}")
     public Response clientUpdate(@Valid @PathParam(value = "id") Long id, @Valid Client client) {
         return Response.status(Response.Status.OK).entity(clientService.update(id, client)).build();

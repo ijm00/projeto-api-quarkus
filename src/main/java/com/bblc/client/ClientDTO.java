@@ -1,6 +1,5 @@
 package com.bblc.client;
 
-import com.bblc.category.Category;
 import com.bblc.category.CategoryDTO;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +10,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ClientDTO {
+
     private String name;
-    private String email; 
-    private CategoryDTO category;                         
+    private String email;
+    private CategoryDTO category;
+    
 }

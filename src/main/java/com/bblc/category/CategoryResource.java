@@ -34,9 +34,9 @@ public class CategoryResource {
     @Path("/list-clients")
     public Response listCategories() {
         return Response.status(Response.Status.OK).entity(categoryService.list()).build();
-        }
+    }
 
-    @PUT 
+    @PUT
     @Path("/{id}")
     public Response categoryUpdate(@Valid @PathParam(value = "id") Long id, @Valid Category category) {
         return Response.status(Response.Status.OK).entity(categoryService.update(id, category)).build();

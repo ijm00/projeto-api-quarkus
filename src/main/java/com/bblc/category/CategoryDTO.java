@@ -13,4 +13,5 @@ public class CategoryDTO {
 
     @NotBlank(message = "Nome não pode estar em branco")
     private String name;
+    
 }
