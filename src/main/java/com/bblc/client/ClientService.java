@@ -27,18 +27,14 @@ public class ClientService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public ClientDTO create(Client client) {
-        
         categoryRepository.persist(client.getCategory());
-        
         clientRepository.persist(client);
         return clientMapper.toDomain(client);
     }
 
     @Produces(MediaType.APPLICATION_JSON)
     public List<ClientDTO> list() {
-        return clientRepository.streamAll()
-            .map(c -> clientMapper.toDomain(c))
-            .collect(Collectors.toList());
+        return clientMapper.toDomainList(clientRepository.listWithTypes());
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
