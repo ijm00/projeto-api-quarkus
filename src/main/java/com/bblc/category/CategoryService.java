@@ -22,21 +22,21 @@ public class CategoryService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public void init() {
-        Category categoryDev = new Category()
+        CategoryDTO categoryDev = new CategoryDTO()
             .setName("Developer");
-        categoryRepository.persist(categoryDev);
+        categoryRepository.persist(categoryMapper.toEntity(categoryDev));
 
-        Category categorySell = new Category()
+        CategoryDTO categorySell = new CategoryDTO()
             .setName("Merchant");
-        categoryRepository.persist(categorySell);
+        categoryRepository.persist(categoryMapper.toEntity(categorySell));
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public CategoryDTO create(Category category) {
-        categoryRepository.persist(category);
-        return categoryMapper.toDomain(category);
+    public CategoryDTO create(CategoryDTO categoryDTO) {
+        categoryRepository.persist(categoryMapper.toEntity(categoryDTO));
+        return categoryDTO;
     }
 
     @Produces(MediaType.APPLICATION_JSON)
@@ -52,7 +52,6 @@ public class CategoryService {
     public Category update(Long id, Category category) {
         Category dataCategory = categoryRepository.findById(id);
             dataCategory.setName(category.getName());
-
             categoryRepository.persist(dataCategory);
         return dataCategory;
     }

@@ -1,6 +1,7 @@
 package com.bblc.category;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.DELETE;
@@ -13,6 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 @Path("/category")
+@ApplicationScoped
 public class CategoryResource {
 
     @Inject
@@ -24,8 +26,8 @@ public class CategoryResource {
     }
 
     @POST
-    public Response categoryCreate(@Valid Category category) {
-        return Response.status(Response.Status.CREATED).entity(categoryService.create(category)).build();
+    public Response categoryCreate(@Valid CategoryDTO categoryDTO) {
+        return Response.status(Response.Status.CREATED).entity(categoryService.create(categoryDTO)).build();
     }
 
     @GET

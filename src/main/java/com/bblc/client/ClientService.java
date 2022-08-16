@@ -27,9 +27,9 @@ public class ClientService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public ClientDTO create(Client client) {
-        if (!categoryRepository.existsCategory(client.getCategory().getName())) {
-            categoryRepository.persist(client.getCategory());
-        }
+        
+        categoryRepository.persist(client.getCategory());
+        
         clientRepository.persist(client);
         return clientMapper.toDomain(client);
     }

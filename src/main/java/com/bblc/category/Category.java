@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import com.bblc.client.Client;
 
@@ -28,8 +26,7 @@ public class Category{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotBlank(message = "Nome não pode estar em branco")
-    @NotNull
+    
     @Column(nullable = false)
     private String name;
 
